@@ -1,0 +1,47 @@
+<div style="display: flex;">
+  <div style="border: 2px solid grey; padding: 15px; margin: 10px; padding-top: 0;">
+    <h5>BD ESPANHA</h5>
+    <input type="file" name="files" class="form-control" #uploads (change)="parse(uploads.files, 'espanha')" multiple
+      value="process" />
+  </div>
+  <div style="border: 2px solid grey; padding: 15px; margin: 10px; padding-top: 0;">
+    <h5> OUTRO</h5>
+    <input type="file" name="files" class="form-control" #uploadsOther (change)="parse(uploadsOther.files, 'outro')"
+      multiple value="process" />
+  </div>
+</div>
+<div style="display: flex;">
+  <div style="padding-left: 15px;padding-bottom: 10px;">
+    <button class="btn btn-primary" (click)="compare()">Make Magic</button>
+  </div>
+  <div style="padding-left: 15px;padding-bottom: 10px;">
+    <button class="btn btn-primary" (click)="gridOptions.api.exportDataAsCsv()">Export Magic</button>
+  </div>
+</div>
+<ag-grid-angular style="width: calc(100vw - 60px); height: 500px; padding-left: 15px;" class="ag-theme-alpine"
+  [rowData]="rowData" [columnDefs]="columnDefs" [gridOptions]="gridOptions">
+</ag-grid-angular>
+
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Modal</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="form-group">
+      <label for="exampleInputEmail1">Pesquisa</label>
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" [(ngModel)]="search" placeholder="Nome">
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary" (click)="getAllAvailable()" type="button"
+            id="button-addon2">Pesquisar</button>
+        </div>
+      </div>
+    </div>
+    <ag-grid-angular style="width: 450px; height: 300px; padding-left: 15px;" [rowData]="rowData2"
+      class="ag-theme-alpine" [gridOptions]="gridOptions2">
+    </ag-grid-angular>
+  </div>
+</ng-template>
